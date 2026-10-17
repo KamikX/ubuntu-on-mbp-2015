@@ -1,0 +1,297 @@
+{
+  "initial_idle": {
+    "nodes": {
+      "cs4208.bass": "suspended",
+      "cs4208.split4": "suspended",
+      "cs4208.harmonics": "suspended",
+      "alsa_output.pci-0000_00_1b.0.analog-stereo": "suspended"
+    },
+    "volumes": {
+      "cs4208.bass": {
+        "volume": 1.0,
+        "channelVolumes": [
+          1.405254,
+          1.405254
+        ],
+        "mute": false
+      },
+      "cs4208.harmonics": {
+        "volume": 1.0,
+        "channelVolumes": [
+          0.170891,
+          0.170891
+        ],
+        "mute": false
+      },
+      "alsa_output.pci-0000_00_1b.0.analog-stereo": {
+        "volume": 1.0,
+        "channelVolumes": [
+          1.0,
+          1.0
+        ],
+        "mute": false
+      }
+    },
+    "pcm": {
+      "/proc/asound/card0/pcm0c/sub0/status": "closed\n",
+      "/proc/asound/card0/pcm0p/sub0/status": "closed\n",
+      "/proc/asound/card0/pcm1p/sub0/status": "closed\n",
+      "/proc/asound/card0/pcm2p/sub0/status": "closed\n"
+    },
+    "runtime_status": "suspended",
+    "active_links": []
+  },
+  "playback_1": {
+    "nodes": {
+      "cs4208.bass": "running",
+      "cs4208.split4": "running",
+      "cs4208.harmonics": "running",
+      "alsa_output.pci-0000_00_1b.0.analog-stereo": "running"
+    },
+    "volumes": {
+      "cs4208.bass": {
+        "volume": 1.0,
+        "channelVolumes": [
+          1.405254,
+          1.405254
+        ],
+        "mute": false
+      },
+      "cs4208.harmonics": {
+        "volume": 1.0,
+        "channelVolumes": [
+          0.170891,
+          0.170891
+        ],
+        "mute": false
+      },
+      "alsa_output.pci-0000_00_1b.0.analog-stereo": {
+        "volume": 1.0,
+        "channelVolumes": [
+          1.0,
+          1.0
+        ],
+        "mute": false
+      }
+    },
+    "pcm": {
+      "/proc/asound/card0/pcm0c/sub0/status": "closed\n",
+      "/proc/asound/card0/pcm0p/sub0/status": "state: RUNNING\nowner_pid   : 533353\ntrigger_time: 19324.113658339\ntstamp      : 19326.218458975\ndelay       : 3408\navail       : 29360\navail_max   : 30864\n-----\nhw_ptr      : 101040\nappl_ptr    : 104448\n",
+      "/proc/asound/card0/pcm1p/sub0/status": "closed\n",
+      "/proc/asound/card0/pcm2p/sub0/status": "state: RUNNING\nowner_pid   : 533353\ntrigger_time: 19324.113523627\ntstamp      : 19326.218821470\ndelay       : 3385\navail       : 29383\navail_max   : 30886\n-----\nhw_ptr      : 101088\nappl_ptr    : 104473\n"
+    },
+    "runtime_status": "active",
+    "active_links": [
+      [
+        56,
+        38
+      ],
+      [
+        56,
+        38
+      ],
+      [
+        66,
+        50
+      ],
+      [
+        66,
+        50
+      ],
+      [
+        66,
+        50
+      ],
+      [
+        66,
+        50
+      ],
+      [
+        92,
+        90
+      ],
+      [
+        92,
+        90
+      ],
+      [
+        173,
+        65
+      ],
+      [
+        173,
+        65
+      ]
+    ],
+    "exit_code": 0
+  },
+  "idle_1": {
+    "nodes": {
+      "cs4208.bass": "suspended",
+      "cs4208.split4": "suspended",
+      "cs4208.harmonics": "suspended",
+      "alsa_output.pci-0000_00_1b.0.analog-stereo": "suspended"
+    },
+    "volumes": {
+      "cs4208.bass": {
+        "volume": 1.0,
+        "channelVolumes": [
+          1.405254,
+          1.405254
+        ],
+        "mute": false
+      },
+      "cs4208.harmonics": {
+        "volume": 1.0,
+        "channelVolumes": [
+          0.170891,
+          0.170891
+        ],
+        "mute": false
+      },
+      "alsa_output.pci-0000_00_1b.0.analog-stereo": {
+        "volume": 1.0,
+        "channelVolumes": [
+          1.0,
+          1.0
+        ],
+        "mute": false
+      }
+    },
+    "pcm": {
+      "/proc/asound/card0/pcm0c/sub0/status": "closed\n",
+      "/proc/asound/card0/pcm0p/sub0/status": "closed\n",
+      "/proc/asound/card0/pcm1p/sub0/status": "closed\n",
+      "/proc/asound/card0/pcm2p/sub0/status": "closed\n"
+    },
+    "runtime_status": "suspended",
+    "active_links": []
+  },
+  "playback_2": {
+    "nodes": {
+      "cs4208.bass": "running",
+      "cs4208.split4": "running",
+      "cs4208.harmonics": "running",
+      "alsa_output.pci-0000_00_1b.0.analog-stereo": "running"
+    },
+    "volumes": {
+      "cs4208.bass": {
+        "volume": 1.0,
+        "channelVolumes": [
+          1.405254,
+          1.405254
+        ],
+        "mute": false
+      },
+      "cs4208.harmonics": {
+        "volume": 1.0,
+        "channelVolumes": [
+          0.170891,
+          0.170891
+        ],
+        "mute": false
+      },
+      "alsa_output.pci-0000_00_1b.0.analog-stereo": {
+        "volume": 1.0,
+        "channelVolumes": [
+          1.0,
+          1.0
+        ],
+        "mute": false
+      }
+    },
+    "pcm": {
+      "/proc/asound/card0/pcm0c/sub0/status": "closed\n",
+      "/proc/asound/card0/pcm0p/sub0/status": "state: RUNNING\nowner_pid   : 533353\ntrigger_time: 19349.595275146\ntstamp      : 19351.747669772\ndelay       : 3136\navail       : 29632\navail_max   : 30872\n-----\nhw_ptr      : 103360\nappl_ptr    : 106496\n",
+      "/proc/asound/card0/pcm1p/sub0/status": "closed\n",
+      "/proc/asound/card0/pcm2p/sub0/status": "state: RUNNING\nowner_pid   : 533353\ntrigger_time: 19349.595150232\ntstamp      : 19351.748117952\ndelay       : 3147\navail       : 29621\navail_max   : 30875\n-----\nhw_ptr      : 103368\nappl_ptr    : 106515\n"
+    },
+    "runtime_status": "active",
+    "active_links": [
+      [
+        56,
+        38
+      ],
+      [
+        56,
+        38
+      ],
+      [
+        66,
+        50
+      ],
+      [
+        66,
+        50
+      ],
+      [
+        66,
+        50
+      ],
+      [
+        66,
+        50
+      ],
+      [
+        92,
+        90
+      ],
+      [
+        92,
+        90
+      ],
+      [
+        173,
+        65
+      ],
+      [
+        173,
+        65
+      ]
+    ],
+    "exit_code": 0
+  },
+  "idle_2": {
+    "nodes": {
+      "cs4208.bass": "suspended",
+      "cs4208.split4": "suspended",
+      "cs4208.harmonics": "suspended",
+      "alsa_output.pci-0000_00_1b.0.analog-stereo": "suspended"
+    },
+    "volumes": {
+      "cs4208.bass": {
+        "volume": 1.0,
+        "channelVolumes": [
+          1.405254,
+          1.405254
+        ],
+        "mute": false
+      },
+      "cs4208.harmonics": {
+        "volume": 1.0,
+        "channelVolumes": [
+          0.170891,
+          0.170891
+        ],
+        "mute": false
+      },
+      "alsa_output.pci-0000_00_1b.0.analog-stereo": {
+        "volume": 1.0,
+        "channelVolumes": [
+          1.0,
+          1.0
+        ],
+        "mute": false
+      }
+    },
+    "pcm": {
+      "/proc/asound/card0/pcm0c/sub0/status": "closed\n",
+      "/proc/asound/card0/pcm0p/sub0/status": "closed\n",
+      "/proc/asound/card0/pcm1p/sub0/status": "closed\n",
+      "/proc/asound/card0/pcm2p/sub0/status": "closed\n"
+    },
+    "runtime_status": "suspended",
+    "active_links": []
+  },
+  "pass": true
+}

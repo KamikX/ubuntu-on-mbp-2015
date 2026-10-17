@@ -1,0 +1,1 @@
+savedcmd_snd-hda-codec-cs420x.ko := ld -r -m elf_x86_64 -z noexecstack --no-warn-rwx-segments --build-id=sha1  -T /usr/src/linux-headers-7.0.0-38-generic/scripts/module.lds -o snd-hda-codec-cs420x.ko snd-hda-codec-cs420x.o snd-hda-codec-cs420x.mod.o .module-common.o

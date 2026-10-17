@@ -1,0 +1,17 @@
+{
+  "saved_date": "2026-10-08",
+  "model": "MacBookPro11,4",
+  "codec": "10134208",
+  "subsystem": "106b8000",
+  "kernel": "7.0.0-38-generic",
+  "kernel_package": "7.0.0-38.38",
+  "os": "Ubuntu 26.04.1 LTS amd64",
+  "pipewire": "1.6.2-1ubuntu1.2",
+  "wireplumber": "0.5.13-1ubuntu1",
+  "bankstown": "1.1.0-3build1 amd64",
+  "profile": "cs4208.harmonics",
+  "master_db_at_snapshot": -5.5,
+  "speaker_volume": 127,
+  "bass_speaker_volume": 127,
+  "firmware_retask_active": false
+}

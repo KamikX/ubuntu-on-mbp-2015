@@ -1,0 +1,21 @@
+{
+  "trials": [
+    {
+      "amount": 1,
+      "peak": 0.5248452227873817
+    },
+    {
+      "amount": 2,
+      "peak": 0.5465234194898148
+    },
+    {
+      "amount": 4,
+      "peak": 0.6517485356974138
+    }
+  ],
+  "selected_amount": 4,
+  "bass_rms_change_db": 0.4626859502419451,
+  "primary_unchanged": true,
+  "original_signal_gain_unchanged": true,
+  "installed": false
+}

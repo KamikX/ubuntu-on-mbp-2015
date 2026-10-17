@@ -1,0 +1,54 @@
+{
+  "cs4208.bass": {
+    "volume": 1.0,
+    "channelVolumes": [
+      1.405254,
+      1.405254
+    ],
+    "channelMap": [
+      "FL",
+      "FR"
+    ],
+    "mute": false
+  },
+  "cs4208.split4": {
+    "volume": 1.0,
+    "channelVolumes": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "channelMap": [
+      "FL",
+      "FR",
+      "RL",
+      "RR"
+    ],
+    "mute": false
+  },
+  "cs4208.harmonics": {
+    "volume": 1.0,
+    "channelVolumes": [
+      1.0,
+      1.0
+    ],
+    "channelMap": [
+      "FL",
+      "FR"
+    ],
+    "mute": false
+  },
+  "alsa_output.pci-0000_00_1b.0.analog-stereo": {
+    "volume": 1.0,
+    "channelVolumes": [
+      1.0,
+      1.0
+    ],
+    "channelMap": [
+      "FL",
+      "FR"
+    ],
+    "mute": false
+  }
+}

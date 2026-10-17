@@ -1,0 +1,9 @@
+[Unit]
+Description=CS4208 headphone and speaker routing
+After=pipewire.service wireplumber.service
+[Service]
+ExecStart=/usr/bin/python3 %h/.config/cs4208-snapshot/jack-route.py
+Restart=on-failure
+RestartSec=3
+[Install]
+WantedBy=default.target

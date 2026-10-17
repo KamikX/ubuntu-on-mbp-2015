@@ -1,1 +1,3 @@
-sound-driver-cs4208/saved-setup
+__pycache__/
+*.pyc
+sound-driver-cs4208-full/

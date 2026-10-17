@@ -1,0 +1,144 @@
+--- a/sound/hda/codecs/cirrus/cs420x.c
++++ b/sound/hda/codecs/cirrus/cs420x.c
+@@ -8,6 +8,7 @@
+ #include <linux/init.h>
+ #include <linux/slab.h>
+ #include <linux/module.h>
++#include <linux/dmi.h>
+ #include <sound/core.h>
+ #include <linux/pci.h>
+ #include <sound/tlv.h>
+@@ -16,6 +17,14 @@
+ #include "hda_auto_parser.h"
+ #include "hda_jack.h"
+ #include "../generic.h"
++
++/* Diagnostic opt-in; the stock path remains the default. */
++static bool split_speakers;
++module_param(split_speakers, bool, 0444);
++MODULE_PARM_DESC(split_speakers,
++	"Experimental separate stereo speaker PCMs on MacBookPro11,4");
++
++#define CS4208_STREAM_BASS 2
+ 
+ struct cs_spec {
+ 	struct hda_gen_spec gen;
+@@ -754,11 +763,117 @@
+ 	return err;
+ }
+ 
++/*
++ * Give DAC 0x04 its own two-channel HDA DMA stream.  In particular, never
++ * put it in the primary multiout list: opening/closing the primary PCM
++ * must not overwrite/clean up an independently running bass stream.
++ */
++static int cs4208_bass_open(struct hda_pcm_stream *hinfo,
++			  struct hda_codec *codec,
++			  struct snd_pcm_substream *substream)
++{
++	struct cs_spec *spec = codec->spec;
++
++	guard(mutex)(&spec->gen.pcm_mutex);
++	spec->gen.active_streams |= BIT(CS4208_STREAM_BASS);
++	return 0;
++}
++
++static int cs4208_bass_close(struct hda_pcm_stream *hinfo,
++			   struct hda_codec *codec,
++			   struct snd_pcm_substream *substream)
++{
++	struct cs_spec *spec = codec->spec;
++
++	guard(mutex)(&spec->gen.pcm_mutex);
++	spec->gen.active_streams &= ~BIT(CS4208_STREAM_BASS);
++	return 0;
++}
++
++static int cs4208_bass_prepare(struct hda_pcm_stream *hinfo,
++			     struct hda_codec *codec,
++			     unsigned int stream_tag, unsigned int format,
++			     struct snd_pcm_substream *substream)
++{
++	if (substream->runtime->channels != 2 ||
++	    (format & AC_FMT_CHAN_MASK) != 1)
++		return -EINVAL;
++
++	snd_hda_codec_setup_stream(codec, hinfo->nid, stream_tag, 0, format);
++	return 0;
++}
++
++static int cs4208_bass_cleanup(struct hda_pcm_stream *hinfo,
++			     struct hda_codec *codec,
++			     struct snd_pcm_substream *substream)
++{
++	snd_hda_codec_cleanup_stream(codec, hinfo->nid);
++	return 0;
++}
++
++static const struct hda_pcm_stream cs4208_bass_playback = {
++	.substreams = 1,
++	.channels_min = 2,
++	.channels_max = 2,
++	.nid = 0x04,
++	.ops = {
++		.open = cs4208_bass_open,
++		.close = cs4208_bass_close,
++		.prepare = cs4208_bass_prepare,
++		.cleanup = cs4208_bass_cleanup,
++	},
++};
++
++static int cs_build_pcms(struct hda_codec *codec)
++{
++	struct cs_spec *spec = codec->spec;
++	struct hda_multi_out *mout = &spec->gen.multiout;
++	struct hda_pcm *bass;
++	int err, i;
++
++	if (!split_speakers)
++		return snd_hda_gen_build_pcms(codec);
++
++	/* Fail explicitly rather than applying hard-coded NIDs elsewhere. */
++	if (!dmi_match(DMI_PRODUCT_NAME, "MacBookPro11,4") ||
++	    codec->core.vendor_id != 0x10134208 ||
++	    codec->core.subsystem_id != 0x106b8000 ||
++	    mout->num_dacs != 2 || !mout->dac_nids ||
++	    mout->dac_nids[0] != 0x03 || mout->dac_nids[1] != 0x04 ||
++	    mout->hp_nid == 0x04 || spec->gen.alt_dac_nid == 0x04 ||
++	    spec->gen.indep_hp || spec->gen.pcm_playback_hook) {
++		codec_err(codec, "split_speakers: unexpected model/topology\n");
++		return -EINVAL;
++	}
++	for (i = 0; i < ARRAY_SIZE(mout->hp_out_nid); i++)
++		if (mout->hp_out_nid[i] == 0x04)
++			return -EINVAL;
++	for (i = 0; i < ARRAY_SIZE(mout->extra_out_nid); i++)
++		if (mout->extra_out_nid[i] == 0x04)
++			return -EINVAL;
++
++	/* Preserve primary headphone/SPDIF handling, but detach the bass DAC. */
++	mout->num_dacs = 1;
++	mout->max_channels = 2;
++	err = snd_hda_gen_build_pcms(codec);
++	if (err < 0)
++		return err;
++	/* Generic code may choose a speaker 2.1 map from the pin topology. */
++	spec->gen.pcm_rec[0]->stream[SNDRV_PCM_STREAM_PLAYBACK].chmap = NULL;
++
++	bass = snd_hda_codec_pcm_new(codec, "CS4208 Bass Stereo");
++	if (!bass)
++		return -ENOMEM;
++	bass->stream[SNDRV_PCM_STREAM_PLAYBACK] = cs4208_bass_playback;
++	codec_info(codec, "split_speakers: primary DAC 0x03, bass DAC 0x04, independent stereo PCMs\n");
++	return 0;
++}
++
+ static const struct hda_codec_ops cs_codec_ops = {
+ 	.probe = cs_codec_probe,
+ 	.remove = snd_hda_gen_remove,
+ 	.build_controls = cs_build_controls,
+-	.build_pcms = snd_hda_gen_build_pcms,
++	.build_pcms = cs_build_pcms,
+ 	.init = cs_init,
+ 	.unsol_event = snd_hda_jack_unsol_event,
+ 	.stream_pm = snd_hda_gen_stream_pm,
