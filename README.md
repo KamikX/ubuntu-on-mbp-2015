@@ -12,7 +12,7 @@ and system maintenance.
   including the installer fixes required before running it. Related scripts
   and documentation are in [`facetimehd/`](facetimehd/).
 - **Cirrus Logic CS4208 audio** – reference material, configurations, and audio
-  tuning experiments in [`sound-driver-cs4208/`](sound-driver-cs4208/).
+  tuning experiments in [`sound-driver-cs4208/`](sound-driver-cs4208/README.md).
 - **Power consumption and performance** – [optimization documentation](power-optimization/README.md)
   covering CPU management settings, change verification, and rollback steps.
 
